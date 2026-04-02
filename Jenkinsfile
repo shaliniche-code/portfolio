@@ -69,7 +69,6 @@ pipeline {
                     docker stop node.js_app || true
                     docker rm node.js_app || true
                     docker run -d --name nodejs_app -p 80:3000 shalinidocker12/nodejs_latest
-                    
                     EOF
                     '''
 }
