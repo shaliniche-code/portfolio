@@ -59,6 +59,7 @@ pipeline {
              
               stage('ssh into app server') {
                 steps {
+                   
                     echo "deploy to appserver"
                     sh ''' 
                     ssh -o StrictHostKeyChecking=no ubuntu@52.66.7.180 << 'EOF'
@@ -70,6 +71,7 @@ pipeline {
                     docker stop nodejs_app || true
                     docker rm nodejs_app || true
                     docker run -d --name nodejs_app -p 80:3000 shalinidocker12/nodejs_latest
+                   
                     EOF
                     '''
 }
