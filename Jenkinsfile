@@ -67,8 +67,8 @@ pipeline {
                     docker pull shalinidocker12/nodejs_latest 
 
                     echo "stopping and removing old containers if any in the same"
-                    docker stop node.js_app || true
-                    docker rm node.js_app || true
+                    docker stop nodejs_app || true
+                    docker rm nodejs_app || true
                     docker run -d --name nodejs_app -p 80:3000 shalinidocker12/nodejs_latest
                     EOF
                     '''
