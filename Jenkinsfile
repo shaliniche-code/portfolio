@@ -37,12 +37,13 @@ pipeline {
              withCredentials([usernamePassword(
              credentialsId: 'dockercreds', 
              usernameVariable: 'DOCKER_USERNAME',
-             passwordVariable: 'DOCKER_PASS')]) 
+             passwordVariable: 'DOCKER_PASS')]){ 
              
              sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USERNAME --password-stdin '
 
              }
             }
+     }
 
          
            stage('push the image to dokcerhub') {
