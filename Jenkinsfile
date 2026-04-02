@@ -61,7 +61,7 @@ pipeline {
                 steps {
                     echo "deploy to appserver"
                     sh ''' 
-                    ssh -o StrictHostKeyChecking=no ubuntu@appserverip << 'EOF'
+                    ssh -o StrictHostKeyChecking=no ubuntu@52.66.7.180 << 'EOF'
                     
                     echo "pull latest image"
                     docker pull shalinidocker12/nodejs_latest 
