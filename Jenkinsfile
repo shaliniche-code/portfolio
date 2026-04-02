@@ -3,7 +3,7 @@ pipeline {
 
      environment {
         DOCKER_IMAGE = "shalinidocker12/nodejs"
-        tag = "v1"
+        tag = "${BUILD_NUMBER}"
         } 
 
       stages {
@@ -50,8 +50,8 @@ pipeline {
               steps {
                  echo "push image to dockerhub"
                  sh '''
-                    docker tag $DOCKER_IMAGE:$tag shalinidocker12/nodejs_latest
-                    docker push shalinidocker12/nodejs_latest
+                    docker tag $DOCKER_IMAGE:$tag shalinidocker12/nodejs_$tag
+                    docker push shalinidocker12/nodejs_$tag
                     '''
                   }
                 }
@@ -63,10 +63,10 @@ pipeline {
                     echo "deploy to appserver"
                     sh """
 ssh -o StrictHostKeyChecking=no ubuntu@52.66.7.180 '
-docker pull shalinidocker12/nodejs_latest
+docker pull shalinidocker12/nodejs_$tag
 docker stop nodejs_app || true
 docker rm nodejs_app || true
-docker run -d --name nodejs_app -p 80:3000 shalinidocker12/nodejs_latest
+docker run -d --name nodejs_app -p 80:3000 shalinidocker12/nodejs_$tag
 '
 """
  }
