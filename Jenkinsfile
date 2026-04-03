@@ -2,7 +2,7 @@ pipeline {
    agent any
 
      environment {
-        DOCKER_IMAGE = "shalinidocker12/nodejs"
+        DOCKER_IMAGE = "shalinidocker12/nodejavascript"
         tag = "${BUILD_NUMBER}"
         } 
 
@@ -23,6 +23,7 @@ pipeline {
              
              steps {
                 echo "build the image using dockerfile"
+
                 sh 'docker build -t $DOCKER_IMAGE:$tag .'
                 }
                }
