@@ -50,8 +50,8 @@ pipeline {
               steps {
                  echo "push image to dockerhub"
                  sh '''
-                    docker tag $DOCKER_IMAGE:$tag shalinidocker12/nodejs_$tag
-                    docker push shalinidocker12/nodejs_$tag
+                    docker tag $DOCKER_IMAGE:$tag shalinidocker12/nodejs:$tag
+                    docker push shalinidocker12/nodejs:$tag
                     '''
                   }
                 }
@@ -63,10 +63,10 @@ pipeline {
                     echo "deploy to appserver"
                     sh """
 ssh -o StrictHostKeyChecking=no ubuntu@13.234.120.138 '
-docker pull shalinidocker12/nodejs_$tag
+docker pull shalinidocker12/nodejs:$tag
 docker stop nodejs_app || true
 docker rm nodejs_app || true
-docker run -d --name nodejs_app -p 80:3000 shalinidocker12/nodejs_$tag
+docker run -d --name nodejs_app -p 80:3000 shalinidocker12/nodejs:$tag
 '
 """
  }
