@@ -63,7 +63,7 @@ pipeline {
                    
                     echo "deploy to appserver"
                     sh """
-ssh -o StrictHostKeyChecking=no ubuntu@13.234.120.138 '
+ssh -o StrictHostKeyChecking=no ubuntu@13.233.223.229 '
 docker pull $DOCKER_IMAGE:$tag
 docker stop nodejs_app || true
 docker rm nodejs_app || true
